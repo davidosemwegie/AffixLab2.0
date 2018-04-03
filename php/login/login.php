@@ -16,7 +16,7 @@ $password = (string) $_POST["password"];
 
 
 //The querying the database to validate the user log in information
-$sql = "select eid, ename, branchId, branchName
+$sql = "select eid, ename, branchId, branchName, isManager
 from Employee as e, Branch as b
 where e.branch = b.branchId and branch = ? and eid = ? and password = SHA1(?);";
 
@@ -24,7 +24,7 @@ $rowCount = 0; //initializing the rowCount variable
 $result = $con->prepare($sql); //sendind the query to the database
 $result -> bind_param("iis", $code, $eid, $password);
 $result -> execute();
-$result -> bind_result($userId, $userName, $branchId, $userBranchName);
+$result -> bind_result($userId, $userName, $branchId, $userBranchName, $manager);
 
 $exists = false;
 
@@ -32,6 +32,7 @@ $_SESSION["userName"] = 0;
 $_SESSION["branchName"] = 0;
 $_SESSION["userId"] = 0;
 $_SESSION["branchId"] =0;
+$_SESSION["isManager"] = 0;
 
 while ($result -> fetch()){
     $exists = true;
@@ -39,6 +40,7 @@ while ($result -> fetch()){
     $_SESSION["branchName"] = $userBranchName;
     $_SESSION["userId"] = $userId;
     $_SESSION["branchId"] =$branchId;
+    $_SESSION["isManager"] = (int) $manager;
 }
 
 if($exists){

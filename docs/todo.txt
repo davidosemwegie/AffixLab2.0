@@ -1,0 +1,10 @@
+- payroll feature
+- Sales Page
+- Quote Pages
+- add sales/quote
+- footer
+- user profile page
+    - calculate your payroll
+    - view average sales /day and /week maybe /month
+- additional styling
+- restrict access for non-managers
