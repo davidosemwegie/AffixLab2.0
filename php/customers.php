@@ -26,23 +26,6 @@ include "../database/db.php" ?>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
     <style>
-        #rightSide {
-            height: 93%;
-            width: 87.5%;
-            position: absolute;
-            top: 7%;
-            margin-left: 12.5%;
-            z-index: -100;
-        }
-
-        .tableContainter {
-            height: 600px;
-            overflow: auto;
-        }
-
-        #card {
-            margin-top: 2em;
-        }
 
     </style>
 </head>
@@ -78,8 +61,7 @@ include "../database/db.php" ?>
                                 FROM Customer AS c
                                 LEFT JOIN Community AS cm ON c.community = cm.communityid
                                 LEFT JOIN Quote AS q ON q.cid = c.cid AND qid IN (SELECT qid FROM Sale)
-                                GROUP BY c.cid
-                                ORDER BY rev DESC;";
+                                GROUP BY c.cid;";
 
                         $listOfCustomerResult = $con->query($listCustomerQuery);
 
@@ -97,7 +79,7 @@ include "../database/db.php" ?>
                                     <td><?php echo $row["theAddress"] ?></td>
                                     <td><?php echo $row["communityName"] ?></td>
                                     <td><?php echo $row["phone"] ?></td>
-                                    <td>$<?php echo number_format((float)$row["rev"], 2, '.', ''); ?></td>
+                                    <td>$<?php echo number_format((double)$row["rev"], 2, '.', ''); ?></td>
                                     <td><?php echo $memLength ?></td>
                                 </tr>
                                 <?php
@@ -109,9 +91,6 @@ include "../database/db.php" ?>
                 </div>
             </div>
         </div>
-        <footer style="background-color: red">
-            <p>LOL</p>
-        </footer>
     </div>
 </div>
 <?php include "sidebar.php" ?>

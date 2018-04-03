@@ -15,7 +15,7 @@
             <li id="ei"><a href="employees.php">Employee Information</a></li>
             <li id="ci"><a href="customers.php">Customer Information</a></li>
             <li>
-                <button class="btn-primary" id="logoutButton"><a href="login/logout.php">Logout</a></button>
+                <button class="btn btn-primary" id="logoutButton"><a href="login/logout.php">Logout</a></button>
             </li>
         </ul>
     </nav>

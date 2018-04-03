@@ -1,15 +1,18 @@
-<?php include "login/checkIfLoggedIn.php" ?>
+<?php include "login/checkIfLoggedIn.php";
+include "../database/db.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Employees</title>
+    <title>Employee</title>
     <link rel="stylesheet" href="../css/style.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="../css/bootstrap.css">
+
+    <link rel="stylesheet" href="../css/body.css">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -17,16 +20,133 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../js/main.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+    <style>
+
+
+    </style>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid topnav">
     <div class="topBar">
         <a href="#" class="barText" id="pageInfo">Employee Information</a>
+        <button type="button" class="btn btn-info btn-lg" id="newButton" data-target="#myModal">Add New Employee</button>
+    </div>
+</div>
+<div id="rightSide">
+    <div class="container well pageForm">
+        <form action="addEmployee.php" method="post">
+            <h1 class="text-center">Add New Employee</h1>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">First and Last Name</label>
+                    <input type="text" class="form-control" placeholder="First and Last Name" id="name" name="ename">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="password">Password</label>
+                    <input type="text" class="form-control" placeholder="Temporary Password" id="password" name="empPassword">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" placeholder="Address" id="address" name="empAddy">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" placeholder="Email Address" id="email" name="empEmail">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" class="form-control" placeholder="Phone Number" id="phone" name="empPhone">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="branch">Branch</label>
+                    <select name="branch" id="branch" class="selectpicker">
+                        <?php
+                        $branchList = "SELECT branchId, branchName FROM Branch";
+
+                        $bListResult = $con->query($branchList);
+                        if ($bListResult->num_rows > 0) {
+                            while ($row = $bListResult->fetch_assoc()) {
+                                ?>
+                                <option
+                                value="<?php echo $row['branchId'] ?>"><?php echo $row['branchName'] ?></option><?php
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="isManager">Is this person a manager?</label>
+                    <input type="radio" class="form-control col-md-6" value="1" name="isManager" id="isManager">
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+    <div class="container-fluid">
+        <div class="card mb-3" id="card">
+            <div class="card-header">
+                <h1>List of all Employees</h1>
+            </div>
+            <div class="card-body">
+                <div class="tableContainter table-responsive">
+                    <table class="table table-striped" id="pageTable" cellspacing="0">
+                        <thead class="tHead">
+                        <tr>
+                            <td>Employee Name</td>
+                            <td>Address</td>
+                            <td>Phone Number</td>
+                            <td>Branch Name</td>
+                            <td># of Hours Worked</td>
+                            <td>Total Sales</td>
+                        </tr>
+                        </thead>
+                        <tbody class="tBody">
+                        <?php
+                        $listEmployeeQuery = "SELECT Employee.eid, ename, address, branchName, phoneNumber, coalesce(sum(hoursWorked),0) as sumHours, coalesce(sum(price),0) as sumSales
+                                FROM Employee
+                                left join Branch on Employee.branch = Branch.branchId
+                                left join WorkedOn on WorkedOn.eid = Employee.eid
+                                left join Quote on Quote.eid = Employee.eid and qid in (select qid from Sale)
+                                group by Employee.eid;";
+
+                        $listOfEmployeeResult = $con->query($listEmployeeQuery);
+
+                        if ($listOfEmployeeResult->num_rows > 0) {
+                            while ($row = $listOfEmployeeResult->fetch_assoc()) {
+                                ?>
+                                <tr>
+                                    <td><a href="#"><?php echo $row["ename"] ?></a></td>
+                                    <td><?php echo $row["address"] ?></td>
+                                    <td><?php echo $row["phoneNumber"] ?></td>
+                                    <td><?php echo $row["branchName"] ?></td>
+                                    <td><?php echo $row["sumHours"] ?></td>
+                                    <td>$<?php echo $row["sumSales"] ?></td>
+                                </tr>
+                                <?php
+                            }
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <?php include "sidebar.php" ?>
-
-</body>
 <script>
     setActive("ei");
 
@@ -36,6 +156,14 @@
             $('#sidebar').toggleClass('active');
         });
 
+        $('#pageTable').DataTable();
+
+        $('#newButton').click(function () {
+            $(".pageForm").toggle();
+        })
+
     });
 </script>
+</body>
+<script src="../js/main.js"></script>
 </html>
