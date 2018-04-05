@@ -7,7 +7,7 @@ session_start();
  * Time: 6:58 PM
  */
 
-include "../../database/db.php";
+include "../database/db.php";
 
 //Access the information that was passed from the form
 $code = (int) $_POST["code"];
@@ -44,7 +44,7 @@ while ($result -> fetch()){
 }
 
 if($exists){
-    header("Location: ../home.php");
+    header("Location: ../home/home.php");
 } else {
-    header("Location: ../../html/login.html");
+    header("Location: badLogin.html");
 }

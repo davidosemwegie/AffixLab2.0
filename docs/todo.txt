@@ -7,4 +7,5 @@
     - calculate your payroll
     - view average sales /day and /week maybe /month
 - additional styling
+    - log in page
 - restrict access for non-managers

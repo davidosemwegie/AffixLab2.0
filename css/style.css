@@ -164,6 +164,12 @@ ul ul a {
     overflow: auto;
 }
 
+.tbody {
+    height: 700px;
+    overflow: auto;
+}
+
+
 #card {
     margin-top: 1.5em;
 }
@@ -178,4 +184,52 @@ ul ul a {
     display: none;
     font-size: 1.5em;
 }
+
+
+/**LOGIN PAGE**/
+#loginPage {
+    background: #eee !important;
+}
+
+/*.wrapper {*/
+    /*margin-top: 80px;*/
+    /*margin-bottom: 80px;*/
+/*}*/
+
+.form-signin {
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+
+/**HOME PAGE**/
+#homeBox {
+    font-size: 2em;
+    margin-top: 2em;
+}
+
+.homegrid{
+    margin: 1em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

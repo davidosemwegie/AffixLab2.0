@@ -1,4 +1,4 @@
-<?php include "login/checkIfLoggedIn.php";
+<?php include "../login/checkIfLoggedIn.php";
 include "../database/db.php" ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -6,20 +6,20 @@ include "../database/db.php" ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Employee</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap.css">
 
-    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../../css/body.css">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../../js/main.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
@@ -45,7 +45,7 @@ include "../database/db.php" ?>
 </div>
 <div id="rightSide">
     <?php
-    include "checkIfAdmin.php";
+    include "../checkIfAdmin.php";
 
     if ($isAdmin) {
 
@@ -61,6 +61,9 @@ include "../database/db.php" ?>
                         <label for="eDate">End Date</label>
                         <input type="date" class="form-control" placeholder="End Date" id="eDate" name="endDate">
                     </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Check Payroll">
                 </div>
             </form>
         </div>
@@ -94,28 +97,36 @@ include "../database/db.php" ?>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="branch">Branch</label>
-                        <select name="branch" id="branch" class="selectpicker">
-                            <?php
-                            $branchList = "SELECT branchId, branchName FROM Branch";
+                        <div>
+                            <select name="branch" id="branch" class="selectpicker">
+                                <?php
+                                $branchList = "SELECT branchId, branchName FROM Branch";
 
-                            $bListResult = $con->query($branchList);
-                            if ($bListResult->num_rows > 0) {
-                                while ($row = $bListResult->fetch_assoc()) {
-                                    ?>
-                                    <option
-                                    value="<?php echo $row['branchId'] ?>"><?php echo $row['branchName'] ?></option><?php
+                                $bListResult = $con->query($branchList);
+                                if ($bListResult->num_rows > 0) {
+                                    while ($row = $bListResult->fetch_assoc()) {
+                                        ?>
+                                        <option
+                                        value="<?php echo $row['branchId'] ?>"><?php echo $row['branchName'] ?></option><?php
+                                    }
                                 }
-                            }
-                            ?>
-                        </select>
+                                ?>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="isManager">Is this person a manager?</label>
                         <input type="radio" class="form-control col-md-6" value="1" name="isManager" id="isManager">
                     </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="sDate">Start Day</label>
+                        <input type="date" class="form-control" name="startDate" id="sDate">
+                    </div>
+                </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary">
+                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Add Employee">
                 </div>
             </form>
         </div>
@@ -136,11 +147,12 @@ include "../database/db.php" ?>
                                 <td>Branch Name</td>
                                 <td># of Hours Worked</td>
                                 <td>Total Sales</td>
+                                <td>Employment Length</td>
                             </tr>
                             </thead>
                             <tbody class="tBody">
                             <?php
-                            $listEmployeeQuery = "SELECT Employee.eid, ename, address, branchName, phoneNumber, coalesce(sum(hoursWorked),0) AS sumHours, coalesce(sum(price),0) AS sumSales
+                            $listEmployeeQuery = "SELECT Employee.eid, ename, address, branchName, phoneNumber, coalesce(sum(hoursWorked),0) AS sumHours, coalesce(sum(price),0) AS sumSales, timestampdiff(WEEK, startDate, curdate()) AS workedSince
                                 FROM Employee
                                 LEFT JOIN Branch ON Employee.branch = Branch.branchId
                                 LEFT JOIN WorkedOn ON WorkedOn.eid = Employee.eid
@@ -151,6 +163,18 @@ include "../database/db.php" ?>
 
                             if ($listOfEmployeeResult->num_rows > 0) {
                                 while ($row = $listOfEmployeeResult->fetch_assoc()) {
+                                    $started = $row["workedSince"];
+                                    $workedSince = 0;
+                                    if ($started == -1) {
+                                        $workedSince = "starts next week";
+                                    } elseif ($started < 0) {
+
+                                        $workedSince = "starts in " . abs($started) . " weeks";
+                                    } else {
+                                        $workedSince = $started . " weeks agp";
+                                    }
+
+
                                     ?>
                                     <tr>
                                         <td><?php echo $row["eid"] ?></td>
@@ -160,6 +184,7 @@ include "../database/db.php" ?>
                                         <td><?php echo $row["branchName"] ?></td>
                                         <td><?php echo $row["sumHours"] ?></td>
                                         <td>$<?php echo $row["sumSales"] ?></td>
+                                        <td><?php echo $workedSince ?></td>
                                     </tr>
                                     <?php
                                 }
@@ -174,11 +199,11 @@ include "../database/db.php" ?>
 
         <?php
     } else {
-        include "noAccessError.php";
+        include "../noAccessError.php";
     }
     ?>
 </div>
-<?php include "sidebar.php" ?>
+<?php include "../reg/sidebar.php" ?>
 <script>
     setActive("ei");
 
@@ -200,5 +225,5 @@ include "../database/db.php" ?>
     });
 </script>
 </body>
-<script src="../js/main.js"></script>
+<script src="../../js/main.js"></script>
 </html>

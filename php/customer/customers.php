@@ -1,4 +1,4 @@
-<?php include "login/checkIfLoggedIn.php";
+<?php include "../login/checkIfLoggedIn.php";
 include "../database/db.php" ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -6,20 +6,20 @@ include "../database/db.php" ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Customer</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap.css">
 
-    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../../css/body.css">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../../js/main.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
@@ -38,14 +38,14 @@ include "../database/db.php" ?>
 </div>
 <div id="rightSide">
     <?php
-    include "checkIfAdmin.php";
+    include "../checkIfAdmin.php";
 
     if ($isAdmin) {
         ?>
         <div class="container-fluid">
             <div class="card mb-3" id="card">
                 <div class="card-header">
-                    <h1>List of all customers</h1>
+                    <h1>List of all Customers</h1>
                 </div>
                 <div class="card-body">
                     <div class="tableContainter table-responsive">
@@ -60,7 +60,7 @@ include "../database/db.php" ?>
                                 <td>Membership Length</td>
                             </tr>
                             </thead>
-                            <tbody style=" height = 600px; overflow: auto">
+                            <tbody class="tbody">
                             <?php
                             $listCustomerQuery = "SELECT c.cid, cname, c.address AS theAddress, communityName, c.phoneNumber AS phone, sum(price) AS rev, timestampdiff(YEAR, regDate, curdate()) AS membershipLength
                                 FROM Customer AS c
@@ -99,11 +99,11 @@ include "../database/db.php" ?>
         </div>
         <?php
     } else {
-        include "noAccessError.php";
+        include "../noAccessError.php";
     }
     ?>
 </div>
-<?php include "sidebar.php" ?>
+<?php include "../reg/sidebar.php" ?>
 <script>
     setActive("ci");
 
@@ -118,5 +118,5 @@ include "../database/db.php" ?>
     });
 </script>
 </body>
-<script src="../js/main.js"></script>
+<script src="../../js/main.js"></script>
 </html>
