@@ -1,7 +1,3 @@
-function setActive(id) {
-    document.getElementById(id).setAttribute('class', 'active');
-}
-
 //check passwords
 
 function isBlank(inputField)

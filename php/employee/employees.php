@@ -51,7 +51,7 @@ include "../database/db.php" ?>
 
         ?>
         <div class="container well pageForm" id="payrollBox">
-            <form action="payroll.php" method="post">
+            <form action="employeePayroll.php" method="get">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="sDate">Start Date</label>

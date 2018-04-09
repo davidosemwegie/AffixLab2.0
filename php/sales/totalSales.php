@@ -8,6 +8,8 @@
 
 include "../database/db.php";
 
+$eid  = $_SESSION["userId"];
+
 $sql = "SELECT sum(price)
         FROM Quote
         WHERE qid IN (SELECT qid FROM Sale)";

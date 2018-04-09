@@ -1,6 +1,6 @@
 <?php include "../login/checkIfLoggedIn.php";
 include "../database/db.php";
-include "totalSales.php";
+include "userTotalSales.php";
 include "homeStats.php";
 ?>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ include "homeStats.php";
 <body>
 <div class="container-fluid topnav">
     <div class="topBar">
-        <a href="#" class="barText" id="pageInfo">Total Sales: $<?php echo $totalSales ?></a>
+        <a href="#" class="barText" id="pageInfo">Your Total Sales: $<?php echo $totalSales ?></a>
     </div>
 </div>
 <div id="rightSide" style="background-color: grey">
@@ -67,7 +67,7 @@ include "homeStats.php";
                     </div>
                 </div>
                 <div class="container well">
-                    <form action="../employee/payroll.php" method="post">
+                    <form action="userPayroll.php" method="get">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="sDate">Start Date</label>

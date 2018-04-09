@@ -42,14 +42,31 @@ include "../database/db.php" ?>
         <a href="#" class="barText" id="pageInfo">Add New Quote/Sale</a>
     </div>
 </div>
-<div id="rightSide">
+<div id="rightSide" style="background-color: grey">
     <?php
     include "../checkIfAdmin.php";
 
     if ($isAdmin) {
         ?>
         <div class="container well pageForm" id="formBox">
-            <form action="" method="post">
+            <form action="processSale.php" method="post" content="text/plain">
+                <h1 class="text-lg-center">Salesperon</h1>
+                <div class="form-row">
+                    <label for="sPerson">Sales Person Name</label>
+                    <select name="salesPerson" id="sPerson">
+                        <?php
+                        $EmployeeList = "SELECT eid, ename FROM Employee";
+
+                        $eListResult = $con->query($EmployeeList);
+                        if ($eListResult->num_rows > 0) {
+                            while ($row = $eListResult->fetch_assoc()) {
+                                ?>
+                                <option value="<?php echo $row['eid'] ?>"><?php echo $row['ename'] ?></option><?php
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
                 <h1 class="text-lg-center">Customer Information</h1>
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -65,7 +82,7 @@ include "../database/db.php" ?>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="community">Community</label>
-                        <div class="container">
+                        <div>
                             <select name="community" id="community" class="selectpicker">
                                 <?php
                                 $EmployeeList = "SELECT communityId, communityName FROM Community";
@@ -91,7 +108,7 @@ include "../database/db.php" ?>
                         <input type="email" class="form-control" name="email" placeholder="Customer Email Address">
                     </div>
                 </div>
-                <h1 class="text-lg-center">Sale Information</h1>
+                <h1 class="text-lg-center">Quote Information</h1>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="qDate">Quote Date</label>
@@ -106,6 +123,54 @@ include "../database/db.php" ?>
                         <input type="time" class="form-control" name="apTime" id="apTime">
                     </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" id="price" name="price">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="checkbox-inline" for="checkbox-inline"><input type="checkbox" name="exWindowCleaning" id="exWindowCleaning" value="1">Exterior Window Cleaning</label>
+                        <label class="checkbox-inline" for="inWindowCleaning"><input type="checkbox" name="inWindowCleaning" id="inWindowCleaning" value="2">Interior Window Cleaning</label>
+                        <label class="checkbox-inline" for="deckWash"><input type="checkbox" name="deckWash" id="deckWash" value="3">Deck Pressure Washing</label>
+                        <label class="checkbox-inline" for="driveWayWash"><input type="checkbox" name="driveWayWash" id="driveWayWash" value="4">Drive Way Pressure Wash</label>
+                        <label class="checkbox-inline" for="gutterCleaning"><input type="checkbox" name="gutterCleaning" id="gutterCleaning" value="5">Gutter Cleaning</label>
+                        <label class="checkbox-inline" for="siding"><input type="checkbox" name="siding" id="siding" value="6">Siding</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label for="notes">Notes</label>
+                    <input type="text" class="form-control" id="notes" name="notes" placeholder="Notes">
+                </div>
+                <h1 class="text-lg-center">Sale Information</h1>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="isSale">Was this a sale?</label>
+                        <input type="radio" name="isSale" id="isSale" value="1">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="worker">Who did the job?</label>
+                        <select name="worker" id="worker" class="selectpicker">
+                            <?php
+                            $EmployeeList = "SELECT eid, ename FROM Employee";
+
+                            $eListResult = $con->query($EmployeeList);
+                            if ($eListResult->num_rows > 0) {
+                                while ($row = $eListResult->fetch_assoc()) {
+                                    ?>
+                                    <option value="<?php echo $row['eid'] ?>"><?php echo $row['ename'] ?></option><?php
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="hours">How many hours did they work?</label>
+                        <input type="number" id="hours" name="hours" class="form-control">
+                    </div>
+                </div>
+                <input type="submit" value="submit">
             </form>
         </div>
         <?php
