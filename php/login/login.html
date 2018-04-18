@@ -21,22 +21,24 @@
 <div class="container">
     <div class="wrapper" id="loginbox">
         <form action="login.php" method="post" class="form-signin">
-            <h1 class="text-lg-center">Please enter your account Information</h1>
+            <h1 class="text-lg-center text-info">Welcome to AffixLab</h1>
+            <h2 class="text-lg-center">Please enter your account Information</h2>
             <div class="form-group">
                 <label for="accessCode">Company Access Code</label>
-                <input type="number" class="form-control" name="code" id="accessCode">
+                <input type="number" class="form-control" name="code" id="accessCode" required>
             </div>
             <div class="form-group">
                 <label for="empId">Employee Id</label>
-                <input type="number" class="form-control" name="eid" id="empId">
+                <input type="number" class="form-control" name="eid" id="empId" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" id="password">
+                <input type="password" class="form-control" name="password" id="password" required>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-lg btn-primary btn-block" value="Log In">
             </div>
+            <!--<p class="text-lg-center text-muted">Don't have an account? <a class="text-info" href="signup.html">Sign up here</a></p>-->
         </form>
     </div>
 </div>

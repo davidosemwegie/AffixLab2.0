@@ -10,9 +10,9 @@ include "../database/db.php";
 
 $eid  = $_SESSION["userId"];
 
-$sql = "SELECT sum(price)
-        FROM Quote
-        WHERE qid IN (SELECT qid FROM Sale) and eid = $eid;";
+$sql = "SELECT sum(finalPrice)
+        FROM Sale as s
+        WHERE eid = $eid;";
 
 $result = $con->query($sql);
 
@@ -20,7 +20,7 @@ $totalSales = 0;
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $totalSales = $row["sum(price)"];
+        $totalSales = $row["sum(finalPrice)"];
     }
 }
 

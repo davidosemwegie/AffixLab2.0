@@ -139,8 +139,8 @@ for ($i = 0; $i < count($sList); $i++) {
 }
 
 if ($isSale == 1) {
-    $makeSale = $con->prepare("INSERT INTO Sale (finalPrice, qid) VALUES (?, ?)");
-    $makeSale->bind_param("di", $qPrice, $maxqid);
+    $makeSale = $con->prepare("INSERT INTO Sale (finalPrice, qid, eid) VALUES (?, ?, ?)");
+    $makeSale->bind_param("di", $qPrice, $maxqid, $salesPerson);
     $makeSale->execute();
 
     $getLastId = $con->query("SELECT max(sid) FROM Sale;");

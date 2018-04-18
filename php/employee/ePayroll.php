@@ -57,7 +57,7 @@ if (isset($_GET['startDate']) || isset($_GET['endDate'])) {
     if ($isAdmin) {
         ?>
         <div class="container well pageForm" id="payrollBox">
-            <form action="employeePayroll.php" method="get" id="payrollTable">
+            <form action="ePayroll.php" method="get" id="payrollTable">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="sDate">Start Date</label>

@@ -62,11 +62,12 @@ include "../database/db.php" ?>
                             </thead>
                             <tbody class="tbody">
                             <?php
-                            $listCustomerQuery = "SELECT c.cid, cname, c.address AS theAddress, communityName, c.phoneNumber AS phone, sum(price) AS rev, timestampdiff(YEAR, regDate, curdate()) AS membershipLength
-                                FROM Customer AS c
-                                LEFT JOIN Community AS cm ON c.community = cm.communityid
-                                LEFT JOIN Quote AS q ON q.cid = c.cid AND qid IN (SELECT qid FROM Sale)
-                                GROUP BY c.cid;";
+                            $listCustomerQuery = "SELECT c.cid, cname, c.address AS theAddress, communityName, c.phoneNumber AS phone, 
+                                                    sum(price) AS rev, timestampdiff(YEAR, regDate, curdate()) AS membershipLength
+                                                    FROM Customer AS c
+                                                    LEFT JOIN Community AS cm ON c.community = cm.communityid
+                                                    LEFT JOIN Quote AS q ON q.cid = c.cid AND qid IN (SELECT qid FROM Sale)
+                                                    GROUP BY c.cid;";
 
                             $listOfCustomerResult = $con->query($listCustomerQuery);
 

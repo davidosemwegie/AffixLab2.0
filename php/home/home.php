@@ -29,6 +29,9 @@ include "homeStats.php";
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
     <style>
+        #payrolBox {
+            display: none;
+        }
 
     </style>
 </head>
@@ -45,43 +48,49 @@ include "homeStats.php";
     <div class="container-fluid" id="homeBox">
         <div class="container card">
             <div class="card-header">
-                <h1 class="text-lg-center"><?php echo $name?></h1>
+                <h1 class="text-lg-center"><?php echo $name ?></h1>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="card mb-3 homegrid">
                         <div class="card-header">Average Sales</div>
-                        <div class="card-body text-md-center">$<?php echo $averageSalesPerWeek?>/Week</div>
+                        <div class="card-body text-md-center">$<?php echo $averageSalesPerWeek ?>/Week</div>
                     </div>
                     <div class="card mb-3 homegrid">
                         <div class="card-header">Average Number of Sales</div>
-                        <div class="card-body text-md-center"><?php echo $averageNumberSalesPerWeek?>/Week</div>
+                        <div class="card-body text-md-center"><?php echo $averageNumberSalesPerWeek ?>/Week</div>
                     </div>
                     <div class="card mb-3 homegrid">
                         <div class="card-header">Average Number of Quotes</div>
-                        <div class="card-body text-md-center"><?php echo $averageQuotesPerWeek?>/Week</div>
+                        <div class="card-body text-md-center"><?php echo $averageQuotesPerWeek ?>/Week</div>
                     </div>
                     <div class="card mb-3 homegrid">
                         <div class="card-header">Total Hours Worked</div>
-                        <div class="card-body text-md-center"><?php echo $hoursWorked?></div>
+                        <div class="card-body text-md-center"><?php echo $hoursWorked ?></div>
                     </div>
                 </div>
                 <div class="container well">
-                    <form action="userPayroll.php" method="get">
+                    <form action="#" method="get" id="payrollForm">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="sDate">Start Date</label>
-                                <input type="date" class="form-control" placeholder="Start Date" id="sDate" name="startDate">
+                                <input type="date" class="form-control" placeholder="Start Date" id="sDate"
+                                       name="startDate">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="eDate">End Date</label>
-                                <input type="date" class="form-control" placeholder="End Date" id="eDate" name="endDate">
+                                <input type="date" class="form-control" placeholder="End Date" id="eDate"
+                                       name="endDate">
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Check Payroll">
+                            <!--                            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Check Payroll">-->
+                            <button id="#checkButton" class="btn btn-lg btn-primary btn-block">Check payroll</button>
                         </div>
                     </form>
+                </div>
+                <div class="container well" id="payrolBox">
+                    <p id="userPayroll" class="text-center text-info"></p>
                 </div>
             </div>
         </div>
@@ -98,6 +107,33 @@ include "homeStats.php";
         });
 
         $('#pageTable').DataTable();
+
+        $('#payrollForm').submit(function (e) {
+
+            var startDate = $('#sDate').val();
+            var endDate = $('#eDate').val();
+
+            var results = $.get("userPayroll.php?startDate=" + startDate +"&endDate=" +endDate);
+            results.done(function (data) {
+                //id = "#commentList" + pid;
+                //console.log(id);
+                var payRollBox = $('#payrolBox');
+                payRollBox.show();
+
+                var resp = "Your payroll for the period you have selected is: <br>";
+
+                $('#userPayroll').html(resp+"$"+data);
+                console.log(data);
+            });
+            results.fail(function (jqXHR) {
+                console.log("Error: " + jqXHR.status);
+            });
+            results.always(function () {
+                //console.log("done");
+            });
+
+            e.preventDefault();
+        });
 
     });
 </script>

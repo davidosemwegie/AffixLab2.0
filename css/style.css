@@ -191,6 +191,14 @@ ul ul a {
     background: #eee !important;
 }
 
+
+#loginbox {
+    padding-top: 5em;
+}
+
+#signupBox{
+    margin-top: 5em;
+}
 /*.wrapper {*/
     /*margin-top: 80px;*/
     /*margin-bottom: 80px;*/
