@@ -1,6 +1,6 @@
 <?php include "../login/checkIfLoggedIn.php";
 include "../database/db.php";
-include "totalSales.php";?>
+include "totalSales.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +44,7 @@ include "totalSales.php";?>
 <body>
 <div class="container-fluid topnav">
     <div class="topBar">
-<!--        <a href="#" class="barText" id="pageInfo">Quotes and Sale Information</a>-->
+        <!--        <a href="#" class="barText" id="pageInfo">Quotes and Sale Information</a>-->
         <a href="#" class="barText" id="pageInfo">Total Sales: $<?php echo $totalSales ?></a>
         <button type="button" class="btn btn-info btn-lg topButton" id="viewSalesButton">View Sales</button>
         <button type="button" class="btn btn-info btn-lg topButton" id="viewQuotesButton">View Quotes</button>
@@ -137,7 +137,7 @@ include "totalSales.php";?>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="number" id="price" name="price" required>
+                        <input type="number" step="any" min="0" id="price" name="price" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -171,10 +171,10 @@ include "totalSales.php";?>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="isSale">Was this a sale?</label>
-                        <input type="radio" name="isSale" id="isSale" value="1">
+                        <input type="checkbox" name="isSale" id="isSale" value="1">
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="worker">Who did the job?</label>
+                        <label id="workerLabel" for="worker">Who did the job?</label>
                         <select name="worker" id="worker" class="selectpicker">
                             <?php
                             $EmployeeList = "SELECT eid, ename FROM Employee";
@@ -190,7 +190,7 @@ include "totalSales.php";?>
                         </select>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="hours">How many hours did they work?</label>
+                        <label id="hoursLabel" for="hours">How many hours did they work?</label>
                         <input type="number" id="hours" name="hours" class="form-control">
                     </div>
                 </div>
@@ -323,6 +323,11 @@ include "totalSales.php";?>
 
     $(document).ready(function () {
 
+        $('#hours').hide();
+        $('#worker').hide();
+        $('#hoursLabel').hide();
+        $('#workerLabel').hide();
+
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('active');
         });
@@ -347,6 +352,18 @@ include "totalSales.php";?>
             $("#salesBox").hide();
             $('#quoteBox').hide();
         });
+
+        $("#isSale").click(function () {
+            $('#hours').toggle();
+            $('#worker').toggle();
+            $('#hoursLabel').toggle();
+            $('#workerLabel').toggle();
+            if ($('#isSale').is(':checked')) {
+                $('#isSale').attr('disabled', false)
+            }
+//            $("#isSale").toggle(this.checked);
+//            $("#isSale").attr('disabled', true);
+        })
     });
 </script>
 </body>

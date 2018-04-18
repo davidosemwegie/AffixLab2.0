@@ -132,7 +132,7 @@ for ($i = 0; $i < count($sList); $i++) {
     if ($sList[$i] != null or $sList[$i] != "") {
         $value = (int)$sList[$i];
         $addService->bind_param("ii", $maxqid, $value);
-        if ($addService->execute()){
+        if ($addService->execute()) {
             $worked = 1;
         }
     }
@@ -140,7 +140,7 @@ for ($i = 0; $i < count($sList); $i++) {
 
 if ($isSale == 1) {
     $makeSale = $con->prepare("INSERT INTO Sale (finalPrice, qid, eid) VALUES (?, ?, ?)");
-    $makeSale->bind_param("di", $qPrice, $maxqid, $salesPerson);
+    $makeSale->bind_param("dii", $qPrice, $maxqid, $salesPerson);
     $makeSale->execute();
 
     $getLastId = $con->query("SELECT max(sid) FROM Sale;");
@@ -162,7 +162,7 @@ if ($isSale == 1) {
     $updateIsSale->execute();
 }
 
-if($worked == 1){
+if ($worked == 1) {
     header('Location: sales.php');
 }
 
