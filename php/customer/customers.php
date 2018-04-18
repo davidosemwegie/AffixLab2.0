@@ -33,7 +33,7 @@ include "../database/db.php" ?>
 <div class="container-fluid topnav">
     <div class="topBar">
         <a href="#" class="barText" id="pageInfo">Customer Information</a>
-        <button type="button" class="btn btn-info btn-lg" data-target="#myModal">Add New Customer</button>
+<!--        <button type="button" class="btn btn-info btn-lg" data-target="#myModal">Add New Customer</button>-->
     </div>
 </div>
 <div id="rightSide">
