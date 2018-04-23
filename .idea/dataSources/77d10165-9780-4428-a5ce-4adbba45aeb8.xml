@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="AffixLab@138.197.169.152">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="AffixLab">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="DATA301"/>
+    <schema id="4" parent="1" name="flexitDB"/>
+    <schema id="5" parent="1" name="information_schema"/>
+    <schema id="6" parent="1" name="mysql"/>
+    <schema id="7" parent="1" name="performance_schema"/>
+    <schema id="8" parent="1" name="randDB"/>
+    <schema id="9" parent="1" name="sys"/>
+    <schema id="10" parent="1" name="TestDB"/>
+    <table id="11" parent="2" name="Branch"/>
+    <table id="12" parent="2" name="Community"/>
+    <table id="13" parent="2" name="Customer"/>
+    <table id="14" parent="2" name="Employee"/>
+    <table id="15" parent="2" name="Quote"/>
+    <table id="16" parent="2" name="Sale"/>
+    <table id="17" parent="2" name="Service"/>
+    <table id="18" parent="2" name="ServiceProvided"/>
+    <table id="19" parent="2" name="WorkedOn"/>
+    <table id="20" parent="2" name="qService"/>
+    <column id="21" parent="11" name="branchId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="22" parent="11" name="branchName">
+      <Position>2</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="23" parent="11" name="branchCity">
+      <Position>3</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <key id="24" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>branchId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="25" parent="12" name="communityId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="26" parent="12" name="communityName">
+      <Position>2</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <key id="27" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>communityId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="28" parent="13" name="cid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="29" parent="13" name="cname">
+      <Position>2</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="30" parent="13" name="address">
+      <Position>3</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="31" parent="13" name="community">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="32" parent="13" name="phoneNumber">
+      <Position>5</Position>
+      <DataType>varchar(15)|0</DataType>
+    </column>
+    <column id="33" parent="13" name="email">
+      <Position>6</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="34" parent="13" name="regDate">
+      <Position>7</Position>
+      <DataType>date|0</DataType>
+      <DefaultExpression>&apos;2018-03-18&apos;</DefaultExpression>
+    </column>
+    <index id="35" parent="13" name="community">
+      <ColNames>community</ColNames>
+    </index>
+    <key id="36" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>cid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="37" parent="13" name="Customer_ibfk_1">
+      <ColNames>community</ColNames>
+      <RefSchemaName>AffixLab</RefSchemaName>
+      <RefTableName>Community</RefTableName>
+      <RefColNames>communityId</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="38" parent="14" name="eid">
+      <Position>1</Position>
+      <DataType>int(8)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="39" parent="14" name="ename">
+      <Position>2</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="40" parent="14" name="address">
+      <Position>3</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="41" parent="14" name="phoneNumber">
+      <Position>4</Position>
+      <DataType>varchar(15)|0</DataType>
+    </column>
+    <column id="42" parent="14" name="email">
+      <Position>5</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="43" parent="14" name="password">
+      <Position>6</Position>
+      <DataType>varchar(250)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="44" parent="14" name="branch">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="45" parent="14" name="isManager">
+      <Position>8</Position>
+      <DataType>int(1)|0</DataType>
+    </column>
+    <column id="46" parent="14" name="startDate">
+      <Position>9</Position>
+      <DataType>date|0</DataType>
+    </column>
+    <index id="47" parent="14" name="branch">
+      <ColNames>branch</ColNames>
+    </index>
+    <key id="48" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>eid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="49" parent="14" name="Employee_ibfk_1">
+      <ColNames>branch</ColNames>
+      <RefSchemaName>AffixLab</RefSchemaName>
+      <RefTableName>Branch</RefTableName>
+      <RefColNames>branchId</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="50" parent="15" name="qid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="51" parent="15" name="cid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="52" parent="15" name="eid">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="53" parent="15" name="qDate">
+      <Position>4</Position>
+      <DataType>date|0</DataType>
+    </column>
+    <column id="54" parent="15" name="price">
+      <Position>5</Position>
+      <DataType>double|0</DataType>
+    </column>
+    <column id="55" parent="15" name="apDate">
+      <Position>6</Position>
+      <DataType>date|0</DataType>
+    </column>
+    <column id="56" parent="15" name="notes">
+      <Position>7</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="57" parent="15" name="apTime">
+      <Position>8</Position>
+      <DataType>time|0</DataType>
+    </column>
+    <column id="58" parent="15" name="isSale">
+      <Position>9</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <index id="59" parent="15" name="cid">
+      <ColNames>cid</ColNames>
+    </index>
+    <index id="60" parent="15" name="eid">
+      <ColNames>eid</ColNames>
+    </index>
+    <key id="61" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>qid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="62" parent="15" name="Quote_ibfk_1">
+      <ColNames>cid</ColNames>
+      <RefSchemaName>AffixLab</RefSchemaName>
+      <RefTableName>Customer</RefTableName>
+      <RefColNames>cid</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="63" parent="15" name="Quote_ibfk_2">
+      <ColNames>eid</ColNames>
+      <RefSchemaName>AffixLab</RefSchemaName>
+      <RefTableName>Employee</RefTableName>
+      <RefColNames>eid</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="64" parent="16" name="sid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="65" parent="16" name="finalPrice">
+      <Position>2</Position>
+      <DataType>double|0</DataType>
+    </column>
+    <column id="66" parent="16" name="qid">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="67" parent="16" name="qid">
+      <ColNames>qid</ColNames>
+    </index>
+    <key id="68" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>sid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="69" parent="16" name="Sale_ibfk_1">
+      <ColNames>qid</ColNames>
+      <RefSchemaName>AffixLab</RefSchemaName>
+      <RefTableName>Quote</RefTableName>
+      <RefColNames>qid</RefColNames>
+    </foreign-key>
+    <column id="70" parent="17" name="svid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="71" parent="17" name="serviceName">
+      <Position>2</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <key id="72" parent="17" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>svid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="73" parent="18" name="sid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="74" parent="18" name="svid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="75" parent="18" name="svid">
+      <ColNames>svid</ColNames>
+    </index>
+    <key id="76" parent="18" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>sid
+svid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="77" parent="18" name="ServiceProvided_ibfk_1">
+      <ColNames>sid</ColNames>
+      <RefSchemaName>AffixLab</RefSchemaName>
+      <RefTableName>Sale</RefTableName>
+      <RefColNames>sid</RefColNames>
+    </foreign-key>
+    <foreign-key id="78" parent="18" name="ServiceProvided_ibfk_2">
+      <ColNames>svid</ColNames>
+      <RefSchemaName>AffixLab</RefSchemaName>
+      <RefTableName>Service</RefTableName>
+      <RefColNames>svid</RefColNames>
+    </foreign-key>
+    <column id="79" parent="19" name="sid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="80" parent="19" name="eid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="81" parent="19" name="hoursWorked">
+      <Position>3</Position>
+      <DataType>double|0</DataType>
+    </column>
+    <index id="82" parent="19" name="eid">
+      <ColNames>eid</ColNames>
+    </index>
+    <index id="83" parent="19" name="sid">
+      <ColNames>sid</ColNames>
+    </index>
+    <foreign-key id="84" parent="19" name="WorkedOn_ibfk_1">
+      <ColNames>sid</ColNames>
+      <RefSchemaName>AffixLab</RefSchemaName>
+      <RefTableName>Sale</RefTableName>
+      <RefColNames>sid</RefColNames>
+    </foreign-key>
+    <foreign-key id="85" parent="19" name="WorkedOn_ibfk_2">
+      <ColNames>eid</ColNames>
+      <RefSchemaName>AffixLab</RefSchemaName>
+      <RefTableName>Employee</RefTableName>
+      <RefColNames>eid</RefColNames>
+    </foreign-key>
+    <column id="86" parent="20" name="qid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="87" parent="20" name="svid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="88" parent="20" name="qid">
+      <ColNames>qid</ColNames>
+    </index>
+    <index id="89" parent="20" name="svid">
+      <ColNames>svid</ColNames>
+    </index>
+    <foreign-key id="90" parent="20" name="qService_ibfk_1">
+      <ColNames>qid</ColNames>
+      <RefSchemaName>AffixLab</RefSchemaName>
+      <RefTableName>Quote</RefTableName>
+      <RefColNames>qid</RefColNames>
+    </foreign-key>
+    <foreign-key id="91" parent="20" name="qService_ibfk_2">
+      <ColNames>svid</ColNames>
+      <RefSchemaName>AffixLab</RefSchemaName>
+      <RefTableName>Service</RefTableName>
+      <RefColNames>svid</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>

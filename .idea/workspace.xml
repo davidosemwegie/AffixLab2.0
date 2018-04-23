@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="983a4cbb-c86f-4e04-8c70-7d1030ce79b5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/customer/customers.php" afterPath="$PROJECT_DIR$/php/customer/customers.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,7 +40,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="customers.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="customers.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/php/customer/customers.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="595">
@@ -54,14 +53,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/home/home.php">
+      <file leaf-file-name="db.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/php/database/db.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2074">
-              <caret line="122" column="77" lean-forward="false" selection-start-line="122" selection-start-column="77" selection-end-line="122" selection-end-column="77" />
-              <folding>
-                <marker date="1524004457000" expanded="true" signature="4509:4522" ph="{...}" />
-              </folding>
+            <state relative-caret-position="119">
+              <caret line="12" column="2" lean-forward="false" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -298,8 +295,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
   <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="22" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="831" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -542,7 +540,7 @@
       <workItem from="1523396698256" duration="195000" />
       <workItem from="1523495428405" duration="268000" />
       <workItem from="1524000267530" duration="11052000" />
-      <workItem from="1524039841394" duration="2479000" />
+      <workItem from="1524039841394" duration="4487000" />
     </task>
     <task id="LOCAL-00001" summary="made some major progress">
       <created>1522740274950</created>
@@ -600,11 +598,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524083572796</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="removed add customer button">
+      <created>1524084838029</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1524084838029</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76934000" />
+    <option name="totallyTimeSpent" value="78942000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -617,7 +622,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900944" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -694,7 +698,8 @@
     <MESSAGE value="mostly done" />
     <MESSAGE value="Finally fixed the payroll problem" />
     <MESSAGE value="fixed the sales button" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed the sales button" />
+    <MESSAGE value="removed add customer button" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed add customer button" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -949,14 +954,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/database/db.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="2" lean-forward="false" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3383">
@@ -1139,6 +1136,14 @@
             <marker date="1524084827000" expanded="true" signature="2569:3157" ph="SELECT c.cid... Customer" />
             <marker date="1524084827000" expanded="true" signature="3069:3089" ph="SELECT qid F... Sale" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/database/db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="2" lean-forward="false" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
