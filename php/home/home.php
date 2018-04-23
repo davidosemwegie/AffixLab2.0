@@ -48,7 +48,7 @@ include "homeStats.php";
     <div class="container-fluid" id="homeBox">
         <div class="container card">
             <div class="card-header">
-                <h1 class="text-lg-center"><?php echo "Hello ". $name ?></h1>
+                <h1 class="text-lg-center"><?php echo $name ?></h1>
             </div>
             <div class="card-body">
                 <div class="row">
