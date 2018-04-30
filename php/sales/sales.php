@@ -172,6 +172,7 @@ include "totalSales.php"; ?>
                     <div class="form-group col-md-4">
                         <label for="isSale">Was this a sale?</label>
                         <input type="checkbox" name="isSale" id="isSale" value="1">
+                        <input type="checkbox" name="isSale" id="isSale" value="1">
                     </div>
                     <div class="form-group col-md-3">
                         <label id="workerLabel" for="worker">Who did the job?</label>
@@ -191,7 +192,7 @@ include "totalSales.php"; ?>
                     </div>
                     <div class="form-group col-md-3">
                         <label id="hoursLabel" for="hours">How many hours did they work?</label>
-                        <input type="number" id="hours" name="hours" class="form-control">
+                        <input type="text" id="hours" name="hours" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">

@@ -22,12 +22,13 @@ $startDate = 0;
 if (isset($_POST['startDate'])) {
     $startDate = $_POST['startDate'];
 }
+$wage = (double) $_POST['wage'];
 
 
-$sql = "INSERT INTO Employee (ename, address, phoneNumber, email, password, branch, isManager, startDate) VALUES (?, ?, ?, ?, sha1(?), ?, ?, ?)";
+$sql = "INSERT INTO Employee (ename, address, phoneNumber, email, password, branch, isManager, startDate, wage) VALUES (?, ?, ?, ?, sha1(?), ?, ?, ?, ?)";
 
 $insertIntoEmployee = $con->prepare($sql);
-$insertIntoEmployee->bind_param("sssssiis", $name, $address, $phone, $email, $password, $branch, $isManager, $startDate);
+$insertIntoEmployee->bind_param("sssssiisd", $name, $address, $phone, $email, $password, $branch, $isManager, $startDate, $wage);
 
 $worked = false; //this will be set to true if the query is execute correctly.
 

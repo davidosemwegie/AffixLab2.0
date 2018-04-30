@@ -90,7 +90,7 @@ include "homeStats.php";
                     </form>
                 </div>
                 <div class="container well" id="payrolBox">
-                    <p id="userPayroll" class="text-center text-info"></p>
+                    <div id="userPayroll" class=""></div>
                 </div>
             </div>
         </div>
@@ -101,19 +101,17 @@ include "homeStats.php";
     setActive("home");
 
     $(document).ready(function () {
-
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('active');
         });
 
         $('#pageTable').DataTable();
-
         $('#payrollForm').submit(function (e) {
 
             var startDate = $('#sDate').val();
             var endDate = $('#eDate').val();
 
-            var results = $.get("userPayroll.php?startDate=" + startDate +"&endDate=" +endDate);
+            var results = $.get("userPayroll.php?startDate=" + startDate + "&endDate=" + endDate);
             results.done(function (data) {
                 //id = "#commentList" + pid;
                 //console.log(id);
@@ -122,7 +120,7 @@ include "homeStats.php";
 
                 var resp = "Your payroll for the period you have selected is: <br>";
 
-                $('#userPayroll').html(resp+"$"+data);
+                $('#userPayroll').html(resp + "" + data);
                 console.log(data);
             });
             results.fail(function (jqXHR) {

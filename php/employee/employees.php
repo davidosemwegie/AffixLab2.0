@@ -77,7 +77,7 @@ include "../database/db.php" ?>
                                name="ename">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="password">Password</label>
+                        <label for="password">Temporary Password</label>
                         <input type="text" class="form-control" placeholder="Temporary Password" id="password"
                                name="empPassword">
                     </div>
@@ -120,6 +120,10 @@ include "../database/db.php" ?>
                     </div>
                 </div>
                 <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="wage">Wage</label>
+                        <input type="text" class="form-control" name="wage" id="wage">
+                    </div>
                     <div class="form-group col-md-6">
                         <label for="sDate">Start Day</label>
                         <input type="date" class="form-control" name="startDate" id="sDate">
